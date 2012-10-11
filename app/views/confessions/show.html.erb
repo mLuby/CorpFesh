@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @confession.user %>
+</p>
+
+<p>
+  <b>Confession:</b>
+  <%= @confession.confession %>
+</p>
+
+<h2>Comments</h2>
+<%= render @confession.comments %>
+
+<h2>Add a comment:</h2>
+<%= render "comments/form" %>
+
+<%= link_to 'Edit', edit_confession_path(@confession) %> |
+<%= link_to 'Back', confessions_path %>

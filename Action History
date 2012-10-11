@@ -1,0 +1,181 @@
+#This is the history of making CorpFesh
+# the # hash symbol means comment
+# the $ dollar symbol means terminal
+# the @ at symbol means add the following to the file 
+# courtesy of the guide at http://guides.rubyonrails.org/getting_started.html
+
+#creates an index page and routes domain to it
+$ rails generate controller home index
+$ rm public/index.html
+@ config/routes.rb: root :to => "home#index"
+
+#creates confession structure
+$ rails generate scaffold Confession user:string confession:text
+$ rake db:migrate
+@ views/home/index.html.erb: <%= link_to "Confessions, confessions_path %>
+
+#rails console lets you use ruby commands to test creating db entries on your app
+$ rails console
+
+#CSS format control resides in
+@ assets/stylesheets/scaffolds.css.scss
+
+#create comments for confessions
+$ rails generate model Comment commenter:string body:text confession:references
+@ models/confession.rb: has_many :comments
+@ config/routes.rb: resources :confessions do
+					  resources :comments
+					end
+$ rails generate controller Comments
+
+#configure app to allow comments
+@ views/confessions/show.html.erb:
+    <h2>Add a comment:</h2>
+    <%= form_for([@confession, @confession.comments.build]) do |f| %>
+      <div class="field">
+        <%= f.label :commenter %><br />
+        <%= f.text_field :commenter %>
+      </div>
+      <div class="field">
+    		<%= f.label :body %><br />
+    		<%= f.text_area :body %>
+  	  </div>
+  	  <div class="actions">
+    		<%= f.submit %>
+  	  </div>
+		<% end %>
+
+@ controllers/comments_controller.rb:
+	def create
+    @confession = Confession.find(params[:confession_id])
+    @comment = @confession.comments.create(params[:comment])
+    redirect_to confession_path(@confession)
+  end
+
+@ view/confession/show.html.erb:
+  <h2>Comments</h2>
+  <% @confession.comments.each do |comment| %>
+    <p>
+  	  <b>Comment:</b>
+  	  <%= comment.body %>
+    </p>
+  <% end %>
+   
+#use partials to refactor view code
+@+views/comments/_comment.html.erb:
+  <p>
+	<b>Commenter:</b>
+	<%= comment.commenter %>	
+  </p>
+  <p>
+  	<b>Comment:</b>	
+	<%= comment.body %>
+  </p>
+
+@+views/comments/_form.html.erb:
+	<%= form_for([@confession, @confession.comments.build]) do |f| %>
+  <div class="field">
+    <%= f.label :commenter %><br />
+    <%= f.text_field :commenter %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+	
+@ views/confessions/show.html.erb REPLACE:
+	<h2>Comments</h2>
+	<% @confession.comments.each do |comment| %>
+    <p>
+      <b>Comment:</b>
+      <%= comment.body %>
+    </p>
+	<% end %>
+	
+  WITH:
+	<h2>Comments</h2>
+	<%= render @confession.comments %>
+
+@ views/confessions/show.html.erb REPLACE:
+  <h2>Add a comment:</h2>
+	<%= form_for([@confession, @confession.comments.build]) do |f| %>
+  	<div class="field">
+    	<%= f.label :commenter %><br />
+    	<%= f.text_field :commenter %>
+  	</div>
+  	<div class="field">
+    	<%= f.label :body %><br />
+    	<%= f.text_area :body %>
+  	</div>
+  	<div class="actions">
+    	<%= f.submit %>
+  	</div>
+	<% end %>
+	
+	WITH:
+	<h2>Add a comment:</h2>
+	<%= render "comments/form" %>
+
+#destroy comments
+@ views/comments/_comment.html.erb:
+  <p>
+		<%= link_to "Destroy Comment", [comment.confession, comment],
+			:confirm => "Are you sure?",
+			:method => :delete %>
+	</p>
+
+@ controllers/comments_controller.rb:
+	def destroy
+    @confession = Confession.find(params[:confession_id])
+    @comment = @confession.comments.find(params[:id])
+    @comment.destroy
+    redirect_to confession_path(@confession)
+  end
+	
+@ models/confession.rb REPLACE:
+	has_many :comments
+	
+	WITH:
+	has_many :comments, :dependent => :destroy
+
+#security
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

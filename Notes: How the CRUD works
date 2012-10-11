@@ -1,0 +1,55 @@
+# v is a variable that references the table entry
+# ExampleTable is a database table with row entries that have ids, users, and statuses
+v = ExampleTable.find(3)
+v[:id] = 3
+v.id = 3
+
+#CREATE
+#add an entry to ExampleTable, which has a column called "status"
+v = ExampleTable.new
+v.user = "fred"
+v.status = "status message here"
+v.save
+#OR
+v = ExampleTable.new(:status => "hi!", :user => "fred")
+v.save
+#OR
+ExampleTable.create(:status => "hi!", :user => "fred")
+
+#READ
+#find the third entry in ExampleTable
+ExampleTable.find(3)
+#other read methods
+ExampleTable.find(3,4,5)
+ExampleTable.first
+ExampleTable.last
+ExampleTable.all
+ExampleTable.count
+ExampleTable.order(:user) #All ordered by user
+ExampleTable.limit(10) #only 10 tweets
+ExampleTable.where(:user => "fred") #only tweets by fred
+ExampleTable.where(:user => "fred").order(:user).limit(10) #method chaining
+
+
+
+#UPDATE
+#update and save an entry on ExampleTable
+v = ExampleTable.find(3)
+v.user = "fred"
+v.save
+#OR
+v = ExampleTable.find(3)
+v.attributes = {:status => "hi!", :user => "fred"}
+v.save
+#OR
+v = ExampleTable.find(3)
+v.update_atttributes(:status => "hi!", :user => "fred") #updates and saves in one command
+
+#DESTROY
+#destroy an entry in ExampleTable
+v = ExampleTable.find(3)
+v.destroy
+#OR
+ExampleTable.find(3).destroy
+#OR
+ExampleTable.destroy_all

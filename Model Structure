@@ -1,0 +1,8 @@
+users:
+ id #autocreated
+ name #should be taken out later, as users are anonymous
+
+confessions:
+ id #autocreated
+ confession #the text of the confession
+ user_id #ties confessions to originating user
