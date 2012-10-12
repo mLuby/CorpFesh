@@ -1,12 +1,11 @@
 <h1 id="header">Welcome to the Confessional</h1>
 
 <% @confessions.each do |confession| %>
-  <span class="confession"><%= link_to confession.confession, confession %></span>
-  <br />
+	<h2 class="confession">"<%= link_to confession.confession, confession %>"</h2>
 <% end %>
 
 <%= form_for(:confession) do |f| %>
   <div id="footer">
-    <%= f.text_area :confession, :rows=>2, :cols=>40 %><%= f.submit %>
+    <%= f.text_area :confession, :rows=>2, :cols=>40, :class => "form"  %><%= f.submit :class => "form", :value => "Confess" %>
   </div>
 <% end %>

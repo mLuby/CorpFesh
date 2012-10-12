@@ -1,12 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h1 class="confession" id="header">
-	<%= @confession.confession %>
+<h2 class="confession" id="header">
+	"<%= @confession.confession %>"
 	<span id="small"><%= link_to 'Back', confessions_path %></span>
-
-</h1>
-
-<br />
+</h2>
 
 <%= render @confession.comments %>
 <div id="footer">

@@ -1,4 +1,4 @@
 <%= form_for([@confession, @confession.comments.build]) do |f| %>
-	<%= f.text_area :body, :rows=>2, :cols=>40 %>
-	<%= f.submit %>
+	<%= f.text_area :body, :rows=>2, :cols=>40, :class => "form" %>
+	<%= f.submit :class => "form", :value => "Reply" %>
 <% end %>

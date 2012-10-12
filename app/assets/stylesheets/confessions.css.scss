@@ -1,18 +1,62 @@
 // Place all the styles related to the Confessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-$primaryColor: #CDE8B4;
-$secondColor: #9CE3FD;
-$thirdColor: orange;
 
-$fontSize: 1em;
-$spanWidth: 100px;
-$textColor: black;
+/*
+//?? white, dull orange, and dull blue
+$primaryColor: #CC9933; //confessions and comments' background
+$secondColor: #FFFFFF; //div background
+$thirdColor: #336699; //background
+$textColor: black; //text color, if different from thirdColor
+*/
+
+/*
+//dull light sea: cream, dull blue, dull teal 
+$primaryColor: #F5F4D9; //confessions and comments' background
+$secondColor: #52918D; //div background
+$thirdColor: #505976; //background
+$textColor: $thirdColor; //text color, if different from thirdColor
+*/
+
+/*
+//COFFEE: white, tan, brown
+$primaryColor: #F2EFE4; //confessions and comments' background
+$secondColor: #CCA974; //div background
+$thirdColor: #543E29; //background
+$textColor: $thirdColor; //text color, if different from thirdColor
+*/
+
+/*
+//BLUES
+$primaryColor: #d7e1ea; //confessions and comments' background
+$secondColor: #6692d0; //div background
+$thirdColor: #266eba; //background
+$textColor: black; //text color, if different from thirdColor
+*/
+
+//AUTUMN: 
+$primaryColor: #FEF5CA; //confessions and comments' background
+$secondColor: #F0BE45; //div background
+$thirdColor: #BE6515; //background
+$textColor: #723206; //text color, if different from thirdColor
+
+
+$fontSize: 12pt;
+
+body{
+  background-color: $thirdColor;
+  color: $textColor;
+  //makes fixed header and footers work
+  margin-top: 80px;
+  margin-bottom: 66px;
+}
 
 #container{
-  background-color: $primaryColor;
+  margin: 10px;
+  background-color: $secondColor;
   text-align: center;
 }
+
 a{
   color: $textColor;
   text-decoration: none;
@@ -20,39 +64,50 @@ a{
     text-decoration: underline;
   }
 }
-.confession{
-  color: $textColor;
-  background-color: $secondColor;
-  span{
-    width: $spanWidth;
-    padding-bottom: 10px;
-  }
-  p{
-    padding-left: 100px;
-    padding-right: 100px;
-    padding-bottom: 10px;
-  }
+
+.confession, .comment{
+  background-color: $primaryColor;
 }
-//for highlighting the confession while commenting 
-#topic{
+
+//Welcome banner
+h1{
   font-size: #{3*$fontSize};
 }
-h1{
-  background-color: $secondColor;
+//confessions
+h2{
+  font-weight: normal;
+  font-size: #{2*$fontSize};
+  margin-left: 100px;
+  margin-right: 100px;
+}
+//comments
+h3{
+  font-weight: normal;
+  font-size: #{1.4*$fontSize};
+  margin-left: 100px;
+  margin-right: 100px;
 }
 div{
   padding: 10px;
 }
-div.field{
-  background-color: $secondColor;
-}
+
 #small{
   font-size: 10pt;
   font-weight: normal;
+  //send to upper right corner
+  float: right;
+  margin-right: 10px;
 }
 
-body { //makes fixed header and footers work
-  margin: 50px 20px;
+.form{
+  border: thin $thirdColor solid;
+  margin-top: -1px;
+  margin-bottom: -6px; //aligns box with submit button
+  background-color: $secondColor;
+  &:hover{
+    background-color: $thirdColor;
+    color: $primaryColor;
+  }
 }
 
 #header { //fixed header
@@ -64,7 +119,8 @@ body { //makes fixed header and footers work
   width: 100%;
   margin: 0;
   padding: 5px;
-  background-color: $thirdColor;
+  background-color: $primaryColor;
+  border-bottom: thick solid $thirdColor;
 }
 
 #footer { //fixed footer
@@ -76,5 +132,6 @@ body { //makes fixed header and footers work
   width: 100%;
   margin: 0;
   padding: 5px;
-  background-color: $thirdColor;
+  background-color: $primaryColor;
+  border-top: thick solid $thirdColor;
 }
