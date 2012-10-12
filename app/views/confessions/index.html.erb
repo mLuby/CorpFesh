@@ -1,25 +1,12 @@
-<h1>Listing confessions</h1>
-
-<table>
-  <tr>
-    <th>User</th>
-    <th>Confession</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<h1 id="header">Welcome to the Confessional</h1>
 
 <% @confessions.each do |confession| %>
-  <tr>
-    <td><%= confession.user %></td>
-    <td><%= confession.confession %></td>
-    <td><%= link_to 'Show', confession %></td>
-    <td><%= link_to 'Edit', edit_confession_path(confession) %></td>
-    <td><%= link_to 'Destroy', confession, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+  <span class="confession"><%= link_to confession.confession, confession %></span>
+  <br />
 <% end %>
-</table>
 
-<br />
-
-<%= link_to 'New Confession', new_confession_path %>
+<%= form_for(:confession) do |f| %>
+  <div id="footer">
+    <%= f.text_area :confession, :rows=>2, :cols=>40 %><%= f.submit %>
+  </div>
+<% end %>

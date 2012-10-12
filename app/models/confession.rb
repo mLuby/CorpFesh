@@ -1,6 +1,5 @@
 class Confession < ActiveRecord::Base
   attr_accessible :user, :confession
-  validates :user, :presence => true
   validates :confession, :presence => true,
                          :length => {:minimum => 5}
                          

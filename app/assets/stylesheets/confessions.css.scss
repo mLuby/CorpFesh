@@ -1,10 +1,80 @@
 // Place all the styles related to the Confessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-body{
- background-color: green;
- color: white;
+$primaryColor: #CDE8B4;
+$secondColor: #9CE3FD;
+$thirdColor: orange;
+
+$fontSize: 1em;
+$spanWidth: 100px;
+$textColor: black;
+
+#container{
+  background-color: $primaryColor;
+  text-align: center;
 }
 a{
-  color: blue;
+  color: $textColor;
+  text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+.confession{
+  color: $textColor;
+  background-color: $secondColor;
+  span{
+    width: $spanWidth;
+    padding-bottom: 10px;
+  }
+  p{
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 10px;
+  }
+}
+//for highlighting the confession while commenting 
+#topic{
+  font-size: #{3*$fontSize};
+}
+h1{
+  background-color: $secondColor;
+}
+div{
+  padding: 10px;
+}
+div.field{
+  background-color: $secondColor;
+}
+#small{
+  font-size: 10pt;
+  font-weight: normal;
+}
+
+body { //makes fixed header and footers work
+  margin: 50px 20px;
+}
+
+#header { //fixed header
+  position: fixed;
+  top: 0; 
+  left: 0;
+  z-index: 9999;
+  background: #eee;
+  width: 100%;
+  margin: 0;
+  padding: 5px;
+  background-color: $thirdColor;
+}
+
+#footer { //fixed footer
+  position: fixed;
+  bottom: 0; 
+  left: 0;
+  z-index: 9999;
+  background: #eee;
+  width: 100%;
+  margin: 0;
+  padding: 5px;
+  background-color: $thirdColor;
 }
