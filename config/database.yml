@@ -21,14 +21,6 @@ test:
   username: 
   password:
   host: localhost
-  
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: corpfesh_production
-  pool: 5
-  username: 
-  password:
 
 #development:
 #  adapter: sqlite3
