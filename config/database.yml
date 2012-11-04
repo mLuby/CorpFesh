@@ -7,7 +7,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: CorpFesh_development
+  database: corpfesh_development
   pool: 5
   username: 
   password:
@@ -16,7 +16,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: CorpFesh_test
+  database: corpfesh_test
   pool: 5
   username: 
   password:
@@ -25,12 +25,10 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: CorpFesh_production
+  database: corpfesh_production
   pool: 5
   username: 
   password:
-  host: localhost
-
 
 #development:
 #  adapter: sqlite3
